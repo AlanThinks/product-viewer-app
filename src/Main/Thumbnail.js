@@ -1,7 +1,7 @@
 import React from "react"
 
-const Thumbnail = ({ id, imageUrl, description }) => {
-  return <img src={imageUrl} alt={description} />
+const Thumbnail = ({ onClick, id, imageUrl, itemName }) => {
+  return <img name={id} onClick={onClick} src={imageUrl} alt={itemName} />
 }
 
 export default Thumbnail

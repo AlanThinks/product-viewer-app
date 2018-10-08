@@ -1,0 +1,10 @@
+@media screen and (min-width: 40.5em) {
+  .container > img {
+    width: 25vw;
+    height: 25vw;
+    margin: auto;
+  }
+  .product-preview-modal {
+    max-width: 600px;
+  }
+}

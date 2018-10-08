@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Product View App",
+  "name": "Product Viewer App by @AlanThinks",
   "icons": [
     {
       "src": "favicon.ico",
