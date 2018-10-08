@@ -1,15 +1,33 @@
 import React, { Component } from "react"
-import logo from "./logo.svg"
-import "./Main.css"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import "./css/allstyles.css"
+
+// import NotFound from "./NotFound"
+import { Provider } from "./data/context"
+import ThumbnailsView from "./Main/ThumbnailsView"
 
 class Router extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-      </div>
+      <Provider>
+        <BrowserRouter>
+          <div className="App">
+            <nav className="search-nav">
+              <i className="fas fa-search" />
+            </nav>
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={ThumbnailsView} />
+                {/* <Route exact path="/new-contact" component={AddContact} />
+                <Route exact path="/edit-contact" component={EditContact} />
+                <Route exact path="/about/" component={AboutMe} />
+                <Route exact path="/about/:id" component={AboutMe} />
+                <Route component={NotFound} /> */}
+              </Switch>
+            </div>
+          </div>
+        </BrowserRouter>
+      </Provider>
     )
   }
 }
