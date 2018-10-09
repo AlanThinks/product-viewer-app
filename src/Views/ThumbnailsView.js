@@ -58,11 +58,10 @@ export default class ThumbnailsView extends Component {
       <Consumer>
         {value => {
           const { items } = value
-          const { ItemName, BasePrice } = this.state.selectedItem
-          const { Description } = this.state.selectedItem
+          const { ItemName, BasePrice, Description } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
-            truncDescription = Description.substring(0, 75) + ` ..qq.Read More`
+            truncDescription = Description.substring(0, 75) + ` ...Read More`
           } else {
             truncDescription = Description
           }
@@ -92,16 +91,26 @@ export default class ThumbnailsView extends Component {
                 }
               >
                 <div className="product-preview-modal">
-                  <span className="modal-price">
-                    ${parseFloat(BasePrice).toFixed(2)}
-                  </span>
+                  <i
+                    style={{ float: "right", color: "grey" }}
+                    className="fas fa-times"
+                  />
+
                   <div className="preview-header">
                     <h2>{ItemName}</h2>
                   </div>
                   <div className="big-thumbnail">
                     <img src={modalPhotoUrl} alt={ItemName} />
                   </div>
-                  <div className="preview-footer">{truncDescription}</div>
+                  <div className="preview-desc">
+                    <p>{truncDescription}</p>
+                  </div>
+                  <div className="preview-footer">
+                    <button className="btn btn-learn-more">Learn More</button>
+                    <button className="btn modal-price">
+                      ${parseFloat(BasePrice).toFixed(2)}
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="container">
