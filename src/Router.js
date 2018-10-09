@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import "./css/allstyles.css"
+import "./css/styles.css"
 
 // import NotFound from "./NotFound"
 import { Provider } from "./data/context"

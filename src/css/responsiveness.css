@@ -7,4 +7,11 @@
   .product-preview-modal {
     max-width: 600px;
   }
+  .product-preview-modal .preview-header {
+    padding: 5px;
+    width: 80%;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
 }

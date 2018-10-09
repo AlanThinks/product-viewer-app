@@ -9,7 +9,7 @@ export default class ThumbnailsView extends Component {
       showContactInfo: true,
       screenSize: { width: 0, height: 0 },
       viewModal: false,
-      selectedItem: {}
+      selectedItem: { ItemName: "", Description: "", BasePrice: "" }
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
@@ -36,11 +36,16 @@ export default class ThumbnailsView extends Component {
       const selectedItem = items.filter(
         item => item.ProductID.toString() === e.target.name
       )
-      this.setState({ viewModal: true, selectedItem: selectedItem[0] })
+      this.setState({
+        viewModal: true,
+        selectedItem: selectedItem[0]
+      })
     }
   }
   closeModal() {
-    this.setState({ viewModal: false, selectedItem: {} })
+    this.setState({
+      viewModal: false
+    })
   }
   render() {
     const { width } = this.state.screenSize
@@ -53,10 +58,17 @@ export default class ThumbnailsView extends Component {
       <Consumer>
         {value => {
           const { items } = value
-          const { ItemName, Description, BasePrice } = this.state.selectedItem
+          const { ItemName, BasePrice } = this.state.selectedItem
+          const { Description } = this.state.selectedItem
+          let truncDescription
+          if (Description.length > 74) {
+            truncDescription = Description.substring(0, 75) + ` ..qq.Read More`
+          } else {
+            truncDescription = Description
+          }
           const cropUnt = 300
           const cropAmount = "6,6,294,294"
-          const itemPhotoUrl = `${
+          const modalPhotoUrl = `${
             this.state.selectedItem.PhotoName
           }?w=${imageWidth *
             1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
@@ -67,30 +79,40 @@ export default class ThumbnailsView extends Component {
                 className="modal"
                 style={
                   this.state.viewModal
-                    ? { opacity: 100, visibility: "visible" }
-                    : null
+                    ? {
+                        opacity: 100,
+                        visibility: "visible",
+                        transition: "all 0.2s"
+                      }
+                    : {
+                        opacity: 0,
+                        visibility: "hidden",
+                        transition: "all 0.2s"
+                      }
                 }
               >
                 <div className="product-preview-modal">
+                  <span className="modal-price">
+                    ${parseFloat(BasePrice).toFixed(2)}
+                  </span>
                   <div className="preview-header">
-                    {ItemName}
-                    {BasePrice}
+                    <h2>{ItemName}</h2>
                   </div>
                   <div className="big-thumbnail">
-                    <img src={itemPhotoUrl} alt={items[0].Description} />
+                    <img src={modalPhotoUrl} alt={ItemName} />
                   </div>
-                  <div className="preview-footer">{Description} </div>
+                  <div className="preview-footer">{truncDescription}</div>
                 </div>
               </div>
               <div className="container">
                 {items.map(item => (
                   <Thumbnail
+                    key={item.ProductID}
                     onClick={e => this.viewModal(e, items)}
                     id={item.ProductID}
-                    key={item.ProductID}
                     imageUrl={`${
                       item.PhotoName
-                    }?w=${imageWidth}&cropxunits=300&cropyunits=300&crop=6,6,294,294`}
+                    }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
                     itemName={item.ItemName}
                   />
                 ))}

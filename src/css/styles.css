@@ -1,13 +1,13 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700");
-
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Dancing+Script|Great+Vibes");
 /* PLUGIN CSS */
 
 /* MAIN CSS */
 /* Note on "normalize.css": This is not meant to be used as a "CSS Framework", just a quick reset in order to "normalize" render on various browsers. */
 @import url("./normalize.css");
 @import url("./main.css");
-/* @import url("typography.css"); */
-@import url("colors.css");
-@import url("responsiveness.css");
+@import url("./typography.css");
+@import url("./colors.css");
+@import url("./responsiveness.css");

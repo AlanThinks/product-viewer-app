@@ -33,6 +33,6 @@
 }
 .product-preview-modal {
   background: white;
-  border-color: grey;
+  /* border-color: grey; */
   box-shadow: black;
 }
