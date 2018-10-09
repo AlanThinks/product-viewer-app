@@ -1,8 +1,21 @@
 @media screen and (min-width: 40.5em) {
+  .container {
+    width: 70vw;
+    background-color: lightgrey;
+    margin: auto;
+  }
+  .product-image img {
+    width: 100%;
+  }
   .container > img {
     width: 25vw;
     height: 25vw;
     margin: auto;
+  }
+
+  .search {
+    padding: 20px;
+    top: -10px;
   }
   .product-preview-modal {
     max-width: 600px;

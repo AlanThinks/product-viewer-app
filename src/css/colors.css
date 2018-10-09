@@ -3,51 +3,12 @@
   --brand2: #f8b500;
 }
 
+/* Buttons */
 .btn {
   background: white;
-}
-/* Navigation/Search */
-
-.search-nav {
-  color: white;
-  z-index: 1;
-  background: #fff426; /* Old browsers */
-  background: -moz-linear-gradient(
-    45deg,
-    var(--brand1) -1%,
-    var(--brand2) 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    45deg,
-    var(--brand1) -1%,
-    var(--brand2) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    45deg,
-    var(--brand1) -1%,
-    var(--brand2) 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+  border-color: #d6d6d6;
 }
 
-.search-nav i {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.658);
-}
-
-/* Product Preview Modal */
-.modal {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.product-preview-modal {
-  background: white;
-  /* border-color: grey; */
-  box-shadow: black;
-}
-.btn-learn-more:hover {
-  color: white;
-  box-shadow: lightgray 1px 0px 5px;
-}
 .btn-learn-more {
   color: rgb(45, 45, 45);
   text-shadow: white 0px 0px 2px;
@@ -67,4 +28,66 @@
     var(--brand2) 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.btn-learn-more:hover {
+  color: white;
+  box-shadow: lightgray 1px 0px 5px;
+}
+
+/* Navigation/Search */
+
+.search-nav {
+  color: white;
+  z-index: 1;
+  background-color: var(--brand1); /* Old browsers */
+  background: -moz-linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+}
+
+.btn-search {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.658);
+  background-color: #fff426; /* Old browsers */
+  background: -moz-linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    45deg,
+    var(--brand1) -1%,
+    var(--brand2) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
+}
+
+/* Product Preview Modal */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.product-preview-modal {
+  background: white;
+  /* border-color: grey; */
+  box-shadow: black;
 }

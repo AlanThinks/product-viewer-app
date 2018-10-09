@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Consumer } from "../data/context"
 import Thumbnail from "./Thumbnail"
+import { Link } from "react-router-dom"
 
 export default class ThumbnailsView extends Component {
   constructor(props) {
@@ -58,13 +59,22 @@ export default class ThumbnailsView extends Component {
       <Consumer>
         {value => {
           const { items } = value
-          const { ItemName, BasePrice, Description } = this.state.selectedItem
+          const {
+            ProductID,
+            ItemName,
+            BasePrice,
+            Description
+          } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
             truncDescription = Description.substring(0, 75) + ` ...Read More`
           } else {
             truncDescription = Description
           }
+          console.log(
+            "%c" + items[0].ItemName,
+            "font-family:sans-serif; color:green; font-size:2rem; trans"
+          )
           const cropUnt = 300
           const cropAmount = "6,6,294,294"
           const modalPhotoUrl = `${
@@ -74,7 +84,6 @@ export default class ThumbnailsView extends Component {
           return (
             <div>
               <div
-                onClick={this.closeModal}
                 className="modal"
                 style={
                   this.state.viewModal
@@ -92,6 +101,7 @@ export default class ThumbnailsView extends Component {
               >
                 <div className="product-preview-modal">
                   <i
+                    onClick={this.closeModal}
                     style={{ float: "right", color: "grey" }}
                     className="fas fa-times"
                   />
@@ -105,12 +115,14 @@ export default class ThumbnailsView extends Component {
                   <div className="preview-desc">
                     <p>{truncDescription}</p>
                   </div>
-                  <div className="preview-footer">
-                    <button className="btn btn-learn-more">Learn More</button>
-                    <button className="btn modal-price">
-                      ${parseFloat(BasePrice).toFixed(2)}
-                    </button>
-                  </div>
+                  <Link to={`./product-detail/${ProductID}`}>
+                    <div className="preview-footer">
+                      <button className="btn btn-learn-more">Learn More</button>
+                      <button className="btn modal-price">
+                        ${parseFloat(BasePrice).toFixed(2)}
+                      </button>
+                    </div>{" "}
+                  </Link>
                 </div>
               </div>
               <div className="container">
