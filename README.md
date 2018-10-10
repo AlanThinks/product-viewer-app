@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Coding Challenge / Test Application
 
-_By Alan Guevara,[alanthinks.com](http://alanthinks.com)_
+_By Alan Guevara, [alanthinks.com](http://alanthinks.com)_
 
 ### Project Scope:
 
@@ -12,17 +12,17 @@ DO NOT use CSS framework please.
 
 ### The data will be provided via JSON and has the following definition:
 
-_The root object:_
+**The root object:**
 
 This is the manufacturer information used for branding, be sure to show company logo, and company name.
 
 (see link for resizing this to fit your design: http://imageresizing.net/docs/basics)
 
-_Items:_
+**Items:**
 
 This is the list of products for the user to be able to navigate through. Please show ItemID, ItemName, Description, Dimensions, and BasePrice. We use imageresizer (see above) so you can make thumbnails by appending query string parameters to the url of the photoname property
 
-_SalesRep:_
+**SalesRep:**
 
 This is the contact information for the presentation, be sure to display this contact information.
 
