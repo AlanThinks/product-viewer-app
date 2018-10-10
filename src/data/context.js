@@ -5,11 +5,40 @@ const { items, SalesRep, ...ManufacturerData } = data
 
 const Context = React.createContext()
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case `ADD_TO_CART`:
+      const newItem = state.items.filter(
+        item => action.payload === item.ProductID
+      )
+      return {
+        ...state,
+        cart: [newItem, ...state.cart]
+      }
+    case `REMOVE_FROM_CART`:
+      return {
+        ...state,
+        cart: state.cart.filter(item => item.payload !== item.ProductID)
+      }
+
+    // case `UPDATE_ITEM`:
+    //   return {
+    //     ...state,
+    //     cart: state.cart.map(
+    //       item => (action.payload === item.ProductID ? item : action.payload)
+    //     )
+    //   }
+    default:
+      return state
+  }
+}
 export class Provider extends Component {
   state = {
     items,
     SalesRep,
-    ManufacturerData
+    ManufacturerData,
+    cart: [],
+    dispatch: action => this.setState(state => reducer(state, action))
   }
 
   render() {

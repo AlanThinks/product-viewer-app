@@ -10,6 +10,7 @@ export default class ProductDetailView extends Component {
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+    this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
   }
 
   componentDidMount() {
@@ -26,7 +27,15 @@ export default class ProductDetailView extends Component {
       screenSize: { width: window.innerWidth, height: window.innerHeight }
     })
   }
-
+  formatPhoneNumber(phoneNumberString) {
+    const cleaned = ("" + phoneNumberString).replace(/\D/g, "")
+    const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      const intlCode = match[1] ? "+1 " : ""
+      return [intlCode, "(", match[2], ") ", match[3], "-", match[4]].join("")
+    }
+    return null
+  }
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 550
@@ -43,8 +52,6 @@ export default class ProductDetailView extends Component {
             item => item.ProductID.toString() === this.state.currentProductId
           )[0]
           const {
-            ProductID,
-            ManufacturerID,
             ItemID,
             ItemName,
             Description,
@@ -54,7 +61,6 @@ export default class ProductDetailView extends Component {
             OnHandQuantity
           } = item
           const { SalesRep } = value
-          const { ManufacturerData } = value
 
           // let truncDescription
           // if (Description.length > 74) {
@@ -106,7 +112,56 @@ export default class ProductDetailView extends Component {
                 <p> {Description}</p>
                 <em>Dimensions: {Dimensions}</em>
               </div>
-              <div className="sales-rep" />
+              <div className="btn-block">
+                <button className="btn btn-add-to-cart btn-block">
+                  Add To Shopping Cart
+                </button>
+              </div>
+              <div className="sales-rep">
+                <h3>Sales Representative:</h3>
+
+                <div className="sales-rep-table">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Company:</td>
+                        <td>{SalesRep.CompanyName}</td>
+                      </tr>
+                      <tr>
+                        <td>Name:</td>
+                        <td>{SalesRep.FirstName + " " + SalesRep.LastName}</td>
+                      </tr>
+                      <tr>
+                        <td>E-Mail:</td>
+                        <td>{SalesRep.EmailAddress}</td>
+                      </tr>
+                      <tr>
+                        <td>Cell Phone:</td>
+                        <td>{this.formatPhoneNumber(SalesRep.CellPhone)}</td>
+                      </tr>
+                      <tr>
+                        <td>Office Phone:</td>
+                        <td>{this.formatPhoneNumber(SalesRep.Phone)}</td>
+                      </tr>
+                      <tr>
+                        <td>Location: </td>
+                        <td>
+                          {SalesRep.City +
+                            ", " +
+                            SalesRep.State +
+                            " " +
+                            SalesRep.PostalCode}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                {/* <img
+                  className="sales-rep-img"
+                  src={`http://images.repzio.com/productimages/${ManufacturerID}/logo${ManufacturerID}_lg.jpg?cropxunits=100&cropyunits=100&crop=0,5,0,-5`}
+                  alt={SalesRep.CompanyName}
+                /> */}
+              </div>
             </div>
           )
         }}

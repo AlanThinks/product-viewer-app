@@ -16,6 +16,11 @@ export default class ThumbnailsView extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.viewModal = this.viewModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
+    this.addToCart = this.addToCart.bind(this)
+    console.log(
+      '%c "Product Viewer App" by Alan Guevara 👉alanthinks.com',
+      "font-family:sans-serif; color:rgb(216, 0, 90); font-size:1.5rem; text-align:center; text-shadow:1px 1px 1px darkgrey;"
+    )
   }
 
   componentDidMount() {
@@ -48,6 +53,13 @@ export default class ThumbnailsView extends Component {
       viewModal: false
     })
   }
+
+  addToCart(dispatch, productId) {
+    if (productId) {
+      dispatch({ type: "ADD_TO_CART", payload: productId })
+    }
+    this.closeModal()
+  }
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 350
@@ -58,7 +70,7 @@ export default class ThumbnailsView extends Component {
     return (
       <Consumer>
         {value => {
-          const { items } = value
+          const { items, dispatch } = value
           const {
             ProductID,
             ItemName,
@@ -67,14 +79,11 @@ export default class ThumbnailsView extends Component {
           } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
-            truncDescription = Description.substring(0, 75) + ` ...Read More`
+            truncDescription = Description.substring(0, 75) + `...`
           } else {
             truncDescription = Description
           }
-          console.log(
-            "%c" + items[0].ItemName,
-            "font-family:sans-serif; color:green; font-size:2rem; trans"
-          )
+
           const cropUnt = 300
           const cropAmount = "6,6,294,294"
           const modalPhotoUrl = `${
@@ -105,24 +114,33 @@ export default class ThumbnailsView extends Component {
                     style={{ float: "right", color: "grey" }}
                     className="fas fa-times"
                   />
-
                   <div className="preview-header">
                     <h2>{ItemName}</h2>
                   </div>
                   <div className="big-thumbnail">
-                    <img src={modalPhotoUrl} alt={ItemName} />
+                    <Link to={`./product-detail/${ProductID}`}>
+                      <img src={modalPhotoUrl} alt={ItemName} />
+                    </Link>
                   </div>
                   <div className="preview-desc">
                     <p>{truncDescription}</p>
                   </div>
-                  <Link to={`./product-detail/${ProductID}`}>
-                    <div className="preview-footer">
-                      <button className="btn btn-learn-more">Learn More</button>
-                      <button className="btn modal-price">
+
+                  <div className="preview-footer">
+                    <Link to={`./product-detail/${ProductID}`}>
+                      <button className="btn btn-price">
                         ${parseFloat(BasePrice).toFixed(2)}
                       </button>
-                    </div>{" "}
-                  </Link>
+                      <button className="btn btn-learn-more">Details</button>
+                    </Link>
+
+                    <button
+                      onClick={e => this.addToCart(dispatch, ProductID)}
+                      className="btn btn-add-to-cart"
+                    >
+                      Add To Cart
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="container">

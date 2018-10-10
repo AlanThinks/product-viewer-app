@@ -12,7 +12,8 @@ class Router extends Component {
   render() {
     return (
       <Provider>
-        <BrowserRouter basename={`projects/product-viewer-app`}>
+        {/* <BrowserRouter basename={`projects/product-viewer-app`}> */}
+        <BrowserRouter>
           <div className="App">
             <NavigationBar />
             <Switch>

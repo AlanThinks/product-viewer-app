@@ -4,6 +4,7 @@
   --white: white;
   --charcoal: rgb(55, 55, 55);
   --lightgrey: lightgray;
+  --darkgrey: darkgrey;
 }
 
 /* Buttons */
@@ -14,30 +15,41 @@
 
 .btn-learn-more {
   color: rgb(45, 45, 45);
-  text-shadow: white 0px 0px 2px;
+}
+
+.btn-learn-more:hover {
+  box-shadow: var(--darkgrey) 0px 0px 10px;
+  color: var(--white);
+  text-shadow: 0px 0px 2px var(--lightgrey);
+}
+.btn-add-to-cart {
+  color: black;
+  background-color: var(--brand1); /* Old browsers */
   background: -moz-linear-gradient(
-    -45deg,
+    45deg,
     var(--brand1) -1%,
     var(--brand2) 100%
   ); /* FF3.6-15 */
   background: -webkit-linear-gradient(
-    -45deg,
+    45deg,
     var(--brand1) -1%,
     var(--brand2) 100%
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
-    -45deg,
+    45deg,
     var(--brand1) -1%,
     var(--brand2) 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  box-shadow: var(--lightgrey) 0px 0px 5px;
 }
 
-.btn-learn-more:hover {
-  color: white;
-  box-shadow: lightgray 1px 0px 5px;
+.btn-add-to-cart:hover {
+  box-shadow: var(--darkgrey) 0px 0px 10px;
+  color: var(--white);
+  text-shadow: 0px 0px 2px var(--lightgrey);
 }
-
 /* Navigation/Search */
 
 .search-nav {
@@ -84,6 +96,9 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
 }
+.btn-search > i > .car-items-num {
+  color: var(--charcoal);
+}
 
 /* Product Preview Modal */
 .modal {
@@ -111,4 +126,11 @@
 
 .product-description {
   border-bottom-color: var(--lightgrey);
+}
+
+td:nth-child(2) {
+  border-left-color: lightgrey;
+}
+td {
+  border-bottom-color: lightgrey;
 }
