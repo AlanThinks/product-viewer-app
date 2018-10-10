@@ -22,7 +22,7 @@ class Router extends Component {
                 path="/product-detail/:id"
                 component={ProductDetailsView}
               />
-              {/* <Route component={NotFound} /> */}
+              <Route component={ThumbnailsView} />
             </Switch>
           </div>
         </BrowserRouter>

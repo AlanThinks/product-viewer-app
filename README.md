@@ -1,4 +1,4 @@
-[See Live Version Here 👉](http://alanthinks.com/projects/product-viewer-app/)
+👉 [See Live Version Here](http://alanthinks.com/projects/product-viewer-app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
