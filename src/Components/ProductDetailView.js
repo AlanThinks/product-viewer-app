@@ -11,6 +11,7 @@ export default class ProductDetailView extends Component {
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
+    this.addToCart = this.addToCart.bind(this)
   }
 
   componentDidMount() {
@@ -36,6 +37,12 @@ export default class ProductDetailView extends Component {
     }
     return null
   }
+
+  addToCart(dispatch, productId) {
+    if (productId) {
+      dispatch({ type: "ADD_TO_CART", payload: productId })
+    }
+  }
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 550
@@ -58,7 +65,8 @@ export default class ProductDetailView extends Component {
             Dimensions,
             BasePrice,
             PhotoName,
-            OnHandQuantity
+            OnHandQuantity,
+            ProductID
           } = item
           const { SalesRep } = value
 
@@ -99,8 +107,8 @@ export default class ProductDetailView extends Component {
                 </div>
                 <div className="divider">|</div>
                 <button className="price">
-                  ${parseFloat(BasePrice).toFixed(2)}{" "}
-                  <i className="far fa-caret-square-down" />
+                  ${parseFloat(BasePrice).toFixed(2)}
+                  {/* <i className="far fa-caret-square-down" /> */}
                 </button>
               </div>
               <div
@@ -113,8 +121,12 @@ export default class ProductDetailView extends Component {
                 <em>Dimensions: {Dimensions}</em>
               </div>
               <div className="btn-block">
-                <button className="btn btn-add-to-cart btn-block">
-                  Add To Shopping Cart
+                <button
+                  disabled={OnHandQuantity < 1 ? true : false}
+                  onClick={e => this.addToCart(value.dispatch, ProductID)}
+                  className="btn btn-add-to-cart btn-block"
+                >
+                  {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}
                 </button>
               </div>
               <div className="sales-rep">

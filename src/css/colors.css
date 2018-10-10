@@ -50,6 +50,11 @@
   color: var(--white);
   text-shadow: 0px 0px 2px var(--lightgrey);
 }
+.btn-add-to-cart:disabled {
+  background: var(--lightgrey);
+  color: var(--charcoal);
+  box-shadow: none;
+}
 /* Navigation/Search */
 
 .search-nav {

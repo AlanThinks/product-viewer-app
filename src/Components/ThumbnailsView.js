@@ -75,7 +75,8 @@ export default class ThumbnailsView extends Component {
             ProductID,
             ItemName,
             BasePrice,
-            Description
+            Description,
+            OnHandQuantity
           } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
@@ -131,14 +132,15 @@ export default class ThumbnailsView extends Component {
                       <button className="btn btn-price">
                         ${parseFloat(BasePrice).toFixed(2)}
                       </button>
-                      <button className="btn btn-learn-more">Details</button>
+                      <button className="btn btn-details">Details</button>
                     </Link>
 
                     <button
+                      disabled={OnHandQuantity < 1 ? true : false}
                       onClick={e => this.addToCart(dispatch, ProductID)}
                       className="btn btn-add-to-cart"
                     >
-                      Add To Cart
+                      {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}{" "}
                     </button>
                   </div>
                 </div>
