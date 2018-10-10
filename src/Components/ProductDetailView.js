@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { Consumer } from "../data/context"
-import { Link } from "react-router-dom"
 export default class ProductDetailView extends Component {
   constructor(props) {
     super(props)
@@ -14,8 +13,7 @@ export default class ProductDetailView extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
     this.addToCart = this.addToCart.bind(this)
-    this.suggestedItems = this.suggestedItems.bind(this)
-    this.clickSuggestedItem = this.clickSuggestedItem.bind(this)
+    this.getSuggestedItems = this.getSuggestedItems.bind(this)
   }
 
   componentDidMount() {
@@ -41,46 +39,58 @@ export default class ProductDetailView extends Component {
     }
     return null
   }
-  clickSuggestedItem() {
-    this.component.forceUpdate()
-  }
+
   addToCart(dispatch, productId) {
     if (productId) {
       dispatch({ type: "ADD_TO_CART", payload: productId })
     }
   }
-  suggestedItems(allItems, imageWidth, numOfItems) {
+  getSuggestedItems(allItems, numOfItems) {
     const { currentProductId } = this.state
-    const { cropAmount, cropUnt } = this.state
+
     let allOtherItems = allItems.filter(
       item => currentProductId !== item.ProductID.toString()
     )
 
     let suggestedItems = []
+    let lastRandom = undefined
+    let random
+
     for (var i = 0; i < numOfItems; i++) {
-      suggestedItems.push(
-        allOtherItems[Math.floor(Math.random() * allOtherItems.length)]
-      )
+      if (lastRandom === undefined) {
+        random = Math.floor(Math.random() * (allOtherItems.length + 1))
+      } else {
+        random = Math.floor(Math.random() * (allOtherItems.length - 1))
+        if (random >= lastRandom) random += 1
+      }
+      if (random > 8) random = 0
+
+      suggestedItems.push(allOtherItems[random])
+      lastRandom = random
     }
-    return suggestedItems.map(item => (
-      <Link to={`/product-detail/${item.ProductID}`}>
-        <div className="suggested-item">
-          <img
-            src={`${
-              item.PhotoName
-            }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-            alt=""
-          />
-        </div>
-      </Link>
-      // return (
-      //   <SuggestedItem
-      //     item={item}
-      //     key={item.ProductID}
-      //     state={this.state}
-      //     imageWidth={imageWidth}
-      //   />
-    ))
+
+    return suggestedItems
+
+    // .map(item => (
+    //   <Link to={`/product-detail/${item.ProductID}`}>
+    //     <div className="suggested-item">
+    //       <img
+    //         src={`${
+    //           item.PhotoName
+    //         }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
+    //         alt=""
+    //       />
+    //     </div>
+    //   </Link>
+    // return (
+    //   <SuggestedItem
+    //     item={item}
+    //     key={item.ProductID}
+    //     state={this.state}
+    //     imageWidth={imageWidth}
+    //   />
+    // )
+    // )
   }
   render() {
     const { width } = this.state.screenSize
@@ -157,7 +167,22 @@ export default class ProductDetailView extends Component {
                 </button>
               </div>
               <div className="suggested-items">
-                {this.suggestedItems(value.items, imageWidth, 3)}
+                {
+                  <React.Fragment>
+                    {this.getSuggestedItems(value.items, 3).map((item, i) => (
+                      <div key={"suggestedItem" + i} className="suggested-item">
+                        <a href={`/product-detail/${item.ProductID}`}>
+                          <img
+                            src={`${
+                              item.PhotoName
+                            }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
+                            alt=""
+                          />
+                        </a>
+                      </div>
+                    ))}
+                  </React.Fragment>
+                }
               </div>
               <div className="sales-rep">
                 <h3>Sales Representative:</h3>
