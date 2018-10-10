@@ -55,7 +55,6 @@ export default class ProductDetailView extends Component {
     let allOtherItems = allItems.filter(
       item => currentProductId !== item.ProductID.toString()
     )
-    console.log(allItems, allOtherItems)
 
     let suggestedItems = []
     for (var i = 0; i < numOfItems; i++) {
@@ -64,7 +63,7 @@ export default class ProductDetailView extends Component {
       )
     }
     return suggestedItems.map(item => (
-      <Link to={`${process.env.PUBLIC_URL}/product-detail/${item.ProductID}`}>
+      <Link to={`/product-detail/${item.ProductID}`}>
         <div className="suggested-item">
           <img
             src={`${

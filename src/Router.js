@@ -17,14 +17,10 @@ class Router extends Component {
           <div className="App">
             <NavigationBar />
             <Switch>
+              <Route exact path="/" component={ThumbnailsView} />
               <Route
                 exact
-                path={`${process.env.PUBLIC_URL}/`}
-                component={ThumbnailsView}
-              />
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/product-detail/:id`}
+                path="/product-detail/:id"
                 component={ProductDetailsView}
               />
               <Route component={NotFound} />
