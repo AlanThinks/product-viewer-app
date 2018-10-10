@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Coding Challenge / Test Application
 
-_By Alan Guevara , [https://github.com/alanthinks]github.com/alanthinks_
+_By Alan Guevara,[alanthinks.com](http://alanthinks.com)_
 
 ### Project Scope:
 
