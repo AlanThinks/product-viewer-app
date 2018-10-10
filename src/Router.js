@@ -2,11 +2,11 @@ import React, { Component } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import "./css/styles.css"
 
-// import NotFound from "./NotFound"
+import NotFound from "./Components/NotFound"
 import { Provider } from "./data/context"
 import ThumbnailsView from "./Components/ThumbnailsView"
 import ProductDetailsView from "./Components/ProductDetailView"
-import NavigationBar from "./Components/NavigationBar.js"
+import NavigationBar from "./Components/NavigationBar"
 
 class Router extends Component {
   render() {
@@ -22,7 +22,7 @@ class Router extends Component {
                 path="/product-detail/:id"
                 component={ProductDetailsView}
               />
-              {/* <Route component={ThumbnailsView} /> */}
+              <Route component={NotFound} />
             </Switch>
           </div>
         </BrowserRouter>
