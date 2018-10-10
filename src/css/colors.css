@@ -6,7 +6,9 @@
   --lightgrey: lightgray;
   --darkgrey: darkgrey;
 }
-
+a:visited {
+  color: var(--charcoal);
+}
 /* Buttons */
 .btn {
   background: white;
@@ -116,6 +118,12 @@
 }
 
 /* ProductDetailView.js */
+.breadcrumbs {
+  color: var(--charcoal);
+}
+.breadcrumbs span {
+  color: var(--charcoal);
+}
 .info-bar {
   border-color: lightgrey;
 }

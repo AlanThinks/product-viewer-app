@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Buttons */
 button {
   border: none;
@@ -154,11 +158,18 @@ button {
 }
 
 /* ProductDetailView.js */
+
 .product-detail-container {
   box-sizing: border-box;
   padding: 15px;
-  padding-top: 85px;
+  padding-top: 83px;
 }
+.breadcrumbs {
+  padding-left: 3px;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
 .product-header {
   margin-top: 15px;
   padding-left: 5px;

@@ -71,27 +71,9 @@ export default class ProductDetailView extends Component {
     }
 
     return suggestedItems
-
-    // .map(item => (
-    //   <Link to={`/product-detail/${item.ProductID}`}>
-    //     <div className="suggested-item">
-    //       <img
-    //         src={`${
-    //           item.PhotoName
-    //         }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-    //         alt=""
-    //       />
-    //     </div>
-    //   </Link>
-    // return (
-    //   <SuggestedItem
-    //     item={item}
-    //     key={item.ProductID}
-    //     state={this.state}
-    //     imageWidth={imageWidth}
-    //   />
-    // )
-    // )
+  }
+  doTransition() {
+    window.scrollTo(0, 0)
   }
   render() {
     const { width } = this.state.screenSize
@@ -103,8 +85,6 @@ export default class ProductDetailView extends Component {
     return (
       <Consumer>
         {value => {
-          console.log(this.props.match.params.id)
-
           const { cropUnt, cropAmount } = this.state
           let currentId
           !this.state.currentProductId
@@ -127,6 +107,12 @@ export default class ProductDetailView extends Component {
 
           return (
             <div className="container product-detail-container">
+              <div className="breadcrumbs">
+                <Link to="/">
+                  <span>All Products</span>
+                </Link>{" "}
+                > {ItemName}
+              </div>
               <div className="product-image">
                 <img
                   src={`${PhotoName}?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
@@ -183,6 +169,7 @@ export default class ProductDetailView extends Component {
                             pathname: `/product-detail/${item.ProductID}`,
                             state: { currentProductId: item.ProductID }
                           }}
+                          onClick={this.doTransition}
                         >
                           <img
                             src={`${
