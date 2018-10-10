@@ -14,7 +14,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "http://alanthinks.com/projects/product-viewer-app",
+  "homepage": "http://alanthinks.com/projects/product-viewer-app/",
   "eslintConfig": {
     "extends": "react-app"
   },
