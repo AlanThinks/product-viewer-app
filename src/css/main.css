@@ -8,9 +8,9 @@ a {
   text-decoration: none;
 }
 
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 /* Buttons */
 button {
@@ -89,6 +89,51 @@ button {
   height: 100%;
 }
 
+/* Checkout Modal */
+
+.checkout-body {
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  overflow: scroll;
+  padding: 20px 25px;
+  width: 90vw;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 1px 10px;
+}
+
+.checkout-body .header {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.items-table > table {
+  font-size: 0.85rem;
+}
+.items-table th {
+  text-align: left;
+  padding-left: 2px;
+  padding-bottom: 3px;
+}
+
+.items-table td:first-child {
+  font-weight: 400;
+  padding-right: 10px;
+}
+
+.items-table td:nth-child(2) {
+  border-left: solid 1px;
+  padding-left: 10px;
+  width: 25%;
+}
+.items-table td {
+  border-bottom: solid 1px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
 /* Thumbnails View */
 
 .container {
@@ -116,7 +161,7 @@ button {
 
 .modal {
   z-index: 1;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
@@ -253,10 +298,10 @@ button {
 .sales-rep-table {
   float: left;
 }
-table {
+.sales-rep-table table {
   font-size: 0.9rem;
 }
-table {
+.sales-rep-table table {
   width: 90vw;
 }
 img.sales-rep-img {
@@ -264,17 +309,17 @@ img.sales-rep-img {
   margin-left: 15px;
   margin-top: 5px;
 }
-td:first-child {
+.sales-rep-table td:first-child {
   font-weight: 400;
   padding-right: 10px;
 }
 
-td:nth-child(2) {
+.sales-rep-table td:nth-child(2) {
   border-left: solid 1px;
   padding-left: 10px;
   width: 70%;
 }
-td {
+.sales-rep-table td {
   border-bottom: solid 1px;
   padding-bottom: 5px;
   padding-top: 5px;

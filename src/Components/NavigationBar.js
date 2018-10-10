@@ -3,10 +3,20 @@ import { Consumer } from "../data/context"
 import { Link } from "react-router-dom"
 
 export default class NavigationBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { viewModal: false }
+    this.modalAction = this.modalAction.bind(this)
+  }
+  modalAction(dispatch, currentValue) {
+    dispatch({ type: "CHECKOUT_MODAL", payload: !currentValue })
+  }
+
   render() {
     return (
       <Consumer>
         {value => {
+          const { dispatch, checkOutModal } = value
           const { ManufacturerID } = value.ManufacturerData
           return (
             <nav className="search-nav">
@@ -18,7 +28,10 @@ export default class NavigationBar extends Component {
                   />
                 </div>
               </Link>
-              <div className="btn-search">
+              <div
+                className="btn-search"
+                onClick={e => this.modalAction(dispatch, checkOutModal)}
+              >
                 <i className="fas fa-shopping-cart">
                   <span className="car-items-num">
                     {value.cart < 1 ? "" : value.cart.length}

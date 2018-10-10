@@ -7,6 +7,7 @@ import { Provider } from "./data/context"
 import ThumbnailsView from "./Components/ThumbnailsView"
 import ProductDetailsView from "./Components/ProductDetailView"
 import NavigationBar from "./Components/NavigationBar"
+import CheckOutModal from "./Components/CheckOutModal"
 
 class Router extends Component {
   render() {
@@ -14,7 +15,8 @@ class Router extends Component {
       <Provider>
         <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
           {/* <BrowserRouter> */}
-          <div className="App">
+          <div>
+            <CheckOutModal />
             <NavigationBar />
             <Switch>
               <Route exact path="/" component={ThumbnailsView} />

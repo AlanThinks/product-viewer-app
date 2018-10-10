@@ -57,6 +57,18 @@ a:visited {
   color: var(--charcoal);
   box-shadow: none;
 }
+
+/* Check-Out Modal */
+.checkout-body {
+  color: black;
+  background: var(--white);
+  box-shadow: var(--charcoal);
+}
+.items-table > table td,
+.items-table td:nth-child(2) {
+  border-color: var(--lightgrey);
+}
+
 /* Navigation/Search */
 
 .search-nav {
@@ -141,9 +153,9 @@ a:visited {
   border-bottom-color: var(--lightgrey);
 }
 
-td:nth-child(2) {
+.sales-rep-table td:nth-child(2) {
   border-left-color: lightgrey;
 }
-td {
+.sales-rep-table td {
   border-bottom-color: lightgrey;
 }

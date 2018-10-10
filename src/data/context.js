@@ -10,11 +10,17 @@ const reducer = (state, action) => {
     case `ADD_TO_CART`:
       const newItem = state.items.filter(
         item => action.payload === item.ProductID
-      )
+      )[0]
       return {
         ...state,
         cart: [newItem, ...state.cart]
       }
+    case `CHECKOUT_MODAL`:
+      return {
+        ...state,
+        checkOutModal: action.payload
+      }
+
     case `REMOVE_FROM_CART`:
       return {
         ...state,
@@ -38,6 +44,7 @@ export class Provider extends Component {
     SalesRep,
     ManufacturerData,
     cart: [],
+    checkOutModal: false,
     dispatch: action => this.setState(state => reducer(state, action))
   }
 

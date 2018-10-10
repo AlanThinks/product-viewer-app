@@ -72,9 +72,11 @@ export default class ProductDetailView extends Component {
 
     return suggestedItems
   }
+
   doTransition() {
     window.scrollTo(0, 0)
   }
+
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 550
