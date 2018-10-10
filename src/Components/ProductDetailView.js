@@ -50,7 +50,8 @@ export default class ProductDetailView extends Component {
             Description,
             Dimensions,
             BasePrice,
-            PhotoName
+            PhotoName,
+            OnHandQuantity
           } = item
           const { SalesRep } = value
           const { ManufacturerData } = value
@@ -67,7 +68,7 @@ export default class ProductDetailView extends Component {
           // }?w=${imageWidth *
           //   1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
           return (
-            <div className="container">
+            <div className="container product-detail-container">
               <div className="product-header">
                 <h2>{ItemName}</h2>
               </div>
@@ -77,6 +78,26 @@ export default class ProductDetailView extends Component {
                   alt={Description}
                 />
               </div>
+              <div className="info-bar">
+                <div className="item-id">Item ID: {ItemID}</div>
+                <div className="divider">|</div>
+                <div className="stock-info">
+                  {OnHandQuantity < 1 ? (
+                    <span style={{ color: "rgb(225, 0, 0)" }}>
+                      Out Of Stock
+                    </span>
+                  ) : (
+                    `Stock:
+                  ${OnHandQuantity} Units`
+                  )}
+                </div>
+                <div className="divider">|</div>
+                <button className="price">
+                  ${parseFloat(BasePrice).toFixed(2)}{" "}
+                  <i class="far fa-caret-square-down" />
+                </button>
+              </div>
+              <div className="product-description">{Description}</div>
             </div>
           )
         }}

@@ -1,16 +1,14 @@
 @media screen and (min-width: 40.5em) {
   .container {
     width: 70vw;
-    background-color: lightgrey;
     margin: auto;
   }
   .product-image img {
     width: 100%;
   }
-  .container > img {
+  .container > img.feed-thumbnail {
     width: 25vw;
     height: 25vw;
-    margin: auto;
   }
 
   .search {

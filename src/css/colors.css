@@ -1,6 +1,9 @@
 :root {
   --brand1: #fff426;
   --brand2: #f8b500;
+  --white: white;
+  --charcoal: rgb(55, 55, 55);
+  --lightgrey: lightgray;
 }
 
 /* Buttons */
@@ -43,18 +46,18 @@
   background-color: var(--brand1); /* Old browsers */
   background: -moz-linear-gradient(
     45deg,
-    var(--brand1) -1%,
+    var(--white) -10%,
     var(--brand2) 100%
   ); /* FF3.6-15 */
   background: -webkit-linear-gradient(
     45deg,
-    var(--brand1) -1%,
+    var(--white) -10%,
     var(--brand2) 100%
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
     45deg,
-    var(--brand1) -1%,
-    var(--brand2) 100%
+    var(--white) 35%,
+    var(--brand2) 65%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff426', endColorstr='#f8b500',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.534);
@@ -90,4 +93,22 @@
   background: white;
   /* border-color: grey; */
   box-shadow: black;
+}
+
+/* ProductDetailView.js */
+.info-bar {
+  border-color: lightgrey;
+}
+.info-bar .stock-info {
+  border-right-color: var(--lightgrey);
+}
+.price i {
+  color: var(--charcoal);
+}
+.divider {
+  color: var(--charcoal);
+}
+
+.product-description {
+  border-bottom-color: var(--lightgrey);
 }
