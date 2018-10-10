@@ -12,15 +12,19 @@ class Router extends Component {
   render() {
     return (
       <Provider>
-        {/* <BrowserRouter basename={`projects/product-viewer-app`}> */}
-        <BrowserRouter>
+        <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
+          {/* <BrowserRouter> */}
           <div className="App">
             <NavigationBar />
             <Switch>
-              <Route exact path="/" component={ThumbnailsView} />
               <Route
                 exact
-                path="/product-detail/:id"
+                path={`${process.env.PUBLIC_URL}/`}
+                component={ThumbnailsView}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/product-detail/:id`}
                 component={ProductDetailsView}
               />
               <Route component={NotFound} />

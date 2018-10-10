@@ -218,7 +218,17 @@ button {
   display: inline-block;
   float: none;
 }
-
+.suggested-items {
+  width: 100%;
+}
+.suggested-item {
+  width: 33%;
+  display: inline-block;
+  padding: 10px;
+}
+.suggested-item img {
+  width: 100%;
+}
 .sales-rep {
   margin-top: 13px;
   padding-left: 3px;
