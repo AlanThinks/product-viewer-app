@@ -19,7 +19,7 @@ export default class NavigationBar extends Component {
           const { dispatch, checkOutModal } = value
           const { ManufacturerID } = value.ManufacturerData
           return (
-            <nav className="search-nav">
+            <nav className="top-nav">
               <Link to="/">
                 <div className="nav-logo">
                   <img
@@ -29,7 +29,7 @@ export default class NavigationBar extends Component {
                 </div>
               </Link>
               <div
-                className="btn-search"
+                className="btn-cart"
                 onClick={e => this.modalAction(dispatch, checkOutModal)}
               >
                 <i className="fas fa-shopping-cart">

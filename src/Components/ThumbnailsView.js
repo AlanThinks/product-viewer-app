@@ -92,7 +92,7 @@ export default class ThumbnailsView extends Component {
           }?w=${imageWidth *
             1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
           return (
-            <div>
+            <div className="main">
               <div
                 className="modal"
                 style={

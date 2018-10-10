@@ -108,127 +108,135 @@ export default class ProductDetailView extends Component {
           const { SalesRep } = value
 
           return (
-            <div className="container product-detail-container">
+            <div className="container">
               <div className="breadcrumbs">
                 <Link to="/">
                   <span>All Products</span>
                 </Link>{" "}
                 > {ItemName}
               </div>
-              <div className="product-image">
-                <img
-                  src={`${PhotoName}?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-                  alt={ItemName}
-                />
-              </div>
-              <div className="product-header">
-                <h2>{ItemName}</h2>
-              </div>
-              <div className="info-bar">
-                <div className="item-id">Item ID: {ItemID}</div>
-                <div className="divider">|</div>
-                <div className="stock-info">
-                  {OnHandQuantity < 1 ? (
-                    <span style={{ color: "rgb(225, 0, 0)" }}>
-                      Out Of Stock
-                    </span>
-                  ) : (
-                    `Stock:
+              <div className="product-detail-container">
+                <div className="product-image">
+                  <img
+                    src={`${PhotoName}?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
+                    alt={ItemName}
+                  />
+                </div>
+                <div className="product-info">
+                  <div className="product-name">
+                    <h2>{ItemName}</h2>
+                  </div>
+                  <div className="info-bar">
+                    <div className="item-id">Item ID: {ItemID}</div>
+                    <div className="divider">|</div>
+                    <div className="stock-info">
+                      {OnHandQuantity < 1 ? (
+                        <span style={{ color: "rgb(225, 0, 0)" }}>
+                          Out Of Stock
+                        </span>
+                      ) : (
+                        `Stock:
                   ${OnHandQuantity} Units`
-                  )}
-                </div>
-                <div className="divider">|</div>
-                <button className="price">
-                  ${parseFloat(BasePrice).toFixed(2)}
-                  {/* <i className="far fa-caret-square-down" /> */}
-                </button>
-              </div>
-              <div
-                className={
-                  "product-description" +
-                  (!Description ? " product-description-empty" : "")
-                }
-              >
-                <p>{Description}</p>
-                <em>Dimensions: {Dimensions}</em>
-              </div>
-              <div className="btn-block">
-                <button
-                  disabled={OnHandQuantity < 1 ? true : false}
-                  onClick={e => this.addToCart(value.dispatch, ProductID)}
-                  className="btn btn-add-to-cart btn-block"
-                >
-                  {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}
-                </button>
-              </div>
-              <div className="suggested-items">
-                {
-                  <React.Fragment>
-                    {this.getSuggestedItems(value.items, 3).map((item, i) => (
-                      <div key={"suggestedItem" + i} className="suggested-item">
-                        <Link
-                          to={{
-                            pathname: `/product-detail/${item.ProductID}`,
-                            state: { currentProductId: item.ProductID }
-                          }}
-                          onClick={this.doTransition}
-                        >
-                          <img
-                            src={`${
-                              item.PhotoName
-                            }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-                            alt=""
-                          />
-                        </Link>
-                      </div>
-                    ))}
-                  </React.Fragment>
-                }
-              </div>
-              <div className="sales-rep">
-                <h3>Sales Representative:</h3>
+                      )}
+                    </div>
+                    <div className="divider">|</div>
+                    <button className="price">
+                      ${parseFloat(BasePrice).toFixed(2)}
+                      {/* <i className="far fa-caret-square-down" /> */}
+                    </button>
+                  </div>
+                  <div
+                    className={
+                      "product-description" +
+                      (!Description ? " product-description-empty" : "")
+                    }
+                  >
+                    <p>{Description}</p>
+                    <em>Dimensions: {Dimensions}</em>
+                  </div>
+                  <div className="btn-block">
+                    <button
+                      disabled={OnHandQuantity < 1 ? true : false}
+                      onClick={e => this.addToCart(value.dispatch, ProductID)}
+                      className="btn btn-add-to-cart btn-block"
+                    >
+                      {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}
+                    </button>
+                  </div>
+                  <div className="suggested-items">
+                    {
+                      <React.Fragment>
+                        {this.getSuggestedItems(value.items, 3).map(
+                          (item, i) => (
+                            <div
+                              key={"suggestedItem" + i}
+                              className="suggested-item"
+                            >
+                              <Link
+                                to={{
+                                  pathname: `/product-detail/${item.ProductID}`,
+                                  state: { currentProductId: item.ProductID }
+                                }}
+                                onClick={this.doTransition}
+                              >
+                                <img
+                                  src={`${
+                                    item.PhotoName
+                                  }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
+                                  alt=""
+                                />
+                              </Link>
+                            </div>
+                          )
+                        )}
+                      </React.Fragment>
+                    }
+                  </div>
+                  <div className="sales-rep">
+                    <h3>Sales Representative:</h3>
 
-                <div className="sales-rep-table">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Company:</td>
-                        <td>{SalesRep.CompanyName}</td>
-                      </tr>
-                      <tr>
-                        <td>Name:</td>
-                        <td>{SalesRep.FirstName + " " + SalesRep.LastName}</td>
-                      </tr>
-                      <tr>
-                        <td>E-Mail:</td>
-                        <td>{SalesRep.EmailAddress}</td>
-                      </tr>
-                      <tr>
-                        <td>Cell Phone:</td>
-                        <td>{this.formatPhoneNumber(SalesRep.CellPhone)}</td>
-                      </tr>
-                      <tr>
-                        <td>Office Phone:</td>
-                        <td>{this.formatPhoneNumber(SalesRep.Phone)}</td>
-                      </tr>
-                      <tr>
-                        <td>Location: </td>
-                        <td>
-                          {SalesRep.City +
-                            ", " +
-                            SalesRep.State +
-                            " " +
-                            SalesRep.PostalCode}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                    <div className="sales-rep-table">
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>Company:</td>
+                            <td>{SalesRep.CompanyName}</td>
+                          </tr>
+                          <tr>
+                            <td>Name:</td>
+                            <td>
+                              {SalesRep.FirstName + " " + SalesRep.LastName}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>E-Mail:</td>
+                            <td>{SalesRep.EmailAddress}</td>
+                          </tr>
+                          <tr>
+                            <td>Cell Phone:</td>
+                            <td>
+                              {this.formatPhoneNumber(SalesRep.CellPhone)}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Office Phone:</td>
+                            <td>{this.formatPhoneNumber(SalesRep.Phone)}</td>
+                          </tr>
+                          <tr>
+                            <td>Location: </td>
+                            <td>
+                              {SalesRep.City +
+                                ", " +
+                                SalesRep.State +
+                                " " +
+                                SalesRep.PostalCode}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-                {/* <img
-                  className="sales-rep-img"
-                  src={`http://images.repzio.com/productimages/${ManufacturerID}/logo${ManufacturerID}_lg.jpg?cropxunits=100&cropyunits=100&crop=0,5,0,-5`}
-                  alt={SalesRep.CompanyName}
-                /> */}
               </div>
             </div>
           )
