@@ -69,14 +69,14 @@ export default class ProductDetailView extends Component {
           //   1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
           return (
             <div className="container product-detail-container">
-              <div className="product-header">
-                <h2>{ItemName}</h2>
-              </div>
               <div className="product-image">
                 <img
                   src={`${PhotoName}?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-                  alt={Description}
+                  alt={ItemName}
                 />
+              </div>
+              <div className="product-header">
+                <h2>{ItemName}</h2>
               </div>
               <div className="info-bar">
                 <div className="item-id">Item ID: {ItemID}</div>
@@ -94,10 +94,19 @@ export default class ProductDetailView extends Component {
                 <div className="divider">|</div>
                 <button className="price">
                   ${parseFloat(BasePrice).toFixed(2)}{" "}
-                  <i class="far fa-caret-square-down" />
+                  <i className="far fa-caret-square-down" />
                 </button>
               </div>
-              <div className="product-description">{Description}</div>
+              <div
+                className={
+                  "product-description" +
+                  (!Description ? " product-description-empty" : "")
+                }
+              >
+                <p> {Description}</p>
+                <em>Dimensions: {Dimensions}</em>
+              </div>
+              <div className="sales-rep" />
             </div>
           )
         }}

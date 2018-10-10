@@ -16,7 +16,7 @@ export default class NavigationBar extends Component {
                 />
               </div>
               <div className="btn-search">
-                <i className="fas fa-search" />
+                <i className="fas fa-shopping-cart" />{" "}
               </div>
             </nav>
           )

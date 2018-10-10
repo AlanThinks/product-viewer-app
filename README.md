@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Coding Challenge - Test Application
+# Coding Challenge / Test Application
 
-_By Alan Guevara , github.com/alanthinks_
+_By Alan Guevara , [https://github.com/alanthinks]github.com/alanthinks_
 
 ### Project Scope:
 
@@ -16,7 +16,6 @@ _The root object:_
 
 This is the manufacturer information used for branding, be sure to show company logo, and company name.
 
-Company logo is generated using the following url format: http://images.repzio.com/productimages/{{ManufacturerID}}/logo{{ManufacturerID}}_lg.jpg
 (see link for resizing this to fit your design: http://imageresizing.net/docs/basics)
 
 _Items:_
