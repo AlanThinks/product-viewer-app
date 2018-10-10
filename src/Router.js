@@ -16,7 +16,7 @@ class Router extends Component {
           <div className="App">
             <NavigationBar />
             <Switch>
-              <Route exact path="./" component={ThumbnailsView} />
+              <Route exact path="/" component={ThumbnailsView} />
               <Route
                 exact
                 path="/product-detail/:id"
