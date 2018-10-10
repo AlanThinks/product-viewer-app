@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import { Consumer } from "../data/context"
+import { Link } from "react-router-dom"
 export default class ProductDetailView extends Component {
   constructor(props) {
     super(props)
     this.state = {
       screenSize: { width: 0, height: 0 },
-      currentProductId: this.props.match.params.id,
+      currentProductId: "",
       cropUnt: 300,
       cropAmount: "6,6,294,294"
     }
@@ -102,9 +103,15 @@ export default class ProductDetailView extends Component {
     return (
       <Consumer>
         {value => {
+          console.log(this.props.match.params.id)
+
           const { cropUnt, cropAmount } = this.state
+          let currentId
+          !this.state.currentProductId
+            ? (currentId = this.props.match.params.id)
+            : (currentId = this.state.currentProductId)
           const item = value.items.filter(
-            item => item.ProductID.toString() === this.state.currentProductId
+            item => item.ProductID.toString() === currentId
           )[0]
           const {
             ItemID,
@@ -171,14 +178,19 @@ export default class ProductDetailView extends Component {
                   <React.Fragment>
                     {this.getSuggestedItems(value.items, 3).map((item, i) => (
                       <div key={"suggestedItem" + i} className="suggested-item">
-                        <a href={`/product-detail/${item.ProductID}`}>
+                        <Link
+                          to={{
+                            pathname: `/product-detail/${item.ProductID}`,
+                            state: { currentProductId: item.ProductID }
+                          }}
+                        >
                           <img
                             src={`${
                               item.PhotoName
                             }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
                             alt=""
                           />
-                        </a>
+                        </Link>
                       </div>
                     ))}
                   </React.Fragment>
