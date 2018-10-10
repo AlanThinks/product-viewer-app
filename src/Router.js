@@ -12,7 +12,7 @@ class Router extends Component {
   render() {
     return (
       <Provider>
-        <BrowserRouter>
+        <BrowserRouter basename={`projects/product-viewer-app`}>
           <div className="App">
             <NavigationBar />
             <Switch>
