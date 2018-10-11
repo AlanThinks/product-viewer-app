@@ -132,7 +132,7 @@
   }
   .suggested-items {
     position: relative;
-    left: -115%;
+    left: -110%;
     top: 95px;
     width: 100%;
   }
@@ -144,5 +144,23 @@
   }
   .suggested-item img {
     width: 100%;
+  }
+  .suggested-item img:hover {
+    width: 95%;
+  }
+  .feed-thumbnail-wrap > span.thumbnail-name {
+    position: relative;
+    top: 120px;
+    right: -15%;
+    padding: 5px;
+    width: 70%;
+    display: inline-block;
+    font-size: 0.7rem;
+  }
+  .feed-thumbnail-wrap:nth-child(1) > span.thumbnail-name {
+    top: 300px;
+    right: -20%;
+    width: auto;
+    font-size: 0.95rem;
   }
 }

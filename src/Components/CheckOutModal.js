@@ -5,7 +5,9 @@ export default class CheckOutModal extends Component {
   closeModal(dispatch) {
     dispatch({ type: "CHECKOUT_MODAL", payload: false })
   }
-
+  removeItem(dispatch, index) {
+    dispatch({ type: "REMOVE_FROM_CART", payload: index })
+  }
   render() {
     return (
       <Consumer>
@@ -49,20 +51,32 @@ export default class CheckOutModal extends Component {
                   <table>
                     <thead>
                       <tr>
-                        <th>Item</th>
-                        <th>Price</th>
+                        <th>{cart.length > 0 ? "Item" : ""}</th>
+                        <th>{cart.length > 0 ? "Price" : ""}</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {cart
-                        ? cart.map((item, i) => (
-                            <tr key={`checkout item ${i}`}>
-                              <td>{item.ItemName}</td>
-                              <td>${parseFloat(item.BasePrice).toFixed(2)}</td>
-                            </tr>
-                          ))
-                        : "Cart Empty"}
-                      <tr>
+                      {cart.length > 0 ? (
+                        cart.map((item, i) => (
+                          <tr key={`checkout item ${i}`}>
+                            <td>
+                              {item.ItemName}
+                              <i
+                                onClick={e => this.removeItem(dispatch, i)}
+                                className="far fa-trash-alt"
+                              />
+                            </td>
+                            <td>${parseFloat(item.BasePrice).toFixed(2)}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td style={{ textAlign: "center" }}>
+                            Your Shopping Cart Is Empty
+                          </td>
+                        </tr>
+                      )}
+                      <tr style={cart.length > 0 ? {} : { display: "none" }}>
                         <td style={{ float: "right", borderBottom: "none" }}>
                           TOTAL:{" "}
                         </td>

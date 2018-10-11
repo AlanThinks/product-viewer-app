@@ -156,7 +156,7 @@ i {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  padding-top: 75px;
+  padding-top: 35px;
   margin: auto;
   box-sizing: border-box;
 }
@@ -172,6 +172,16 @@ i {
   width: 50%;
   box-sizing: border-box;
   transition: all 0.2s;
+}
+
+.feed-thumbnail-wrap > span.thumbnail-name {
+  position: relative;
+  top: 200px;
+  right: -15%;
+  border: 1px solid;
+  padding: 5px;
+  width: 65%;
+  display: inline-block;
 }
 
 .feed-thumbnail {
@@ -241,7 +251,7 @@ i {
 .breadcrumbs {
   margin-top: 10px;
   padding-left: 20px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-bottom: 5px;
 }
 
@@ -313,7 +323,10 @@ i {
   display: inline-block;
   padding: 10px;
 }
+
 .suggested-item img {
+  transition: 0.2s all;
+
   width: 100%;
 }
 .sales-rep {

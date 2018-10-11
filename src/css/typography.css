@@ -13,3 +13,8 @@ h2 {
   font-weight: 400;
   text-transform: uppercase;
 }
+.feed-thumbnail-wrap > span.thumbnail-name {
+  font-family: "Cinzel", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+}

@@ -1,17 +1,32 @@
-import React from "react"
+import React, { Component } from "react"
 
-const Thumbnail = ({ onClick, id, imageUrl, itemName }) => {
-  return (
-    <div className="feed-thumbnail-wrap">
-      <img
-        className="feed-thumbnail"
-        name={id}
-        onClick={onClick}
-        src={imageUrl}
-        alt={itemName}
-      />
-    </div>
-  )
+export default class Thumbnail extends Component {
+  constructor(props) {
+    super(props)
+    this.imgRef = React.createRef()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.imgRef.current.click()
+  }
+
+  render() {
+    const { onClick, id, imageUrl, itemName } = this.props
+    return (
+      <div className="feed-thumbnail-wrap">
+        <span className="thumbnail-name" onClick={this.handleClick}>
+          {itemName}
+        </span>
+        <img
+          className="feed-thumbnail"
+          name={id}
+          src={imageUrl}
+          alt={itemName}
+          ref={this.imgRef}
+          onClick={onClick}
+        />
+      </div>
+    )
+  }
 }
-
-export default Thumbnail

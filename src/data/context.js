@@ -11,20 +11,39 @@ const reducer = (state, action) => {
       const newItem = state.items.filter(
         item => action.payload === item.ProductID
       )[0]
+      const updatedItems = state.items.map(function(item) {
+        if (action.payload === item.ProductID) {
+          return { ...item, OnHandQuantity: item.OnHandQuantity - 1 }
+        }
+        return item
+      })
       return {
         ...state,
+        items: updatedItems,
         cart: [newItem, ...state.cart]
       }
+
+    case `REMOVE_FROM_CART`:
+      const returnedItem = state.cart.filter(
+        (item, i) => action.payload === i
+      )[0]
+
+      const updatedInventory = state.items.map(function(item) {
+        if (item.ProductID === returnedItem.ProductID) {
+          return { ...item, OnHandQuantity: item.OnHandQuantity + 1 }
+        }
+        return item
+      })
+      return {
+        ...state,
+        items: updatedInventory,
+        cart: state.cart.filter((item, i) => action.payload !== i)
+      }
+
     case `CHECKOUT_MODAL`:
       return {
         ...state,
         checkOutModal: action.payload
-      }
-
-    case `REMOVE_FROM_CART`:
-      return {
-        ...state,
-        cart: state.cart.filter(item => item.payload !== item.ProductID)
       }
 
     // case `UPDATE_ITEM`:
