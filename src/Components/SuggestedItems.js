@@ -9,7 +9,6 @@ export default class SuggestedItems extends Component {
         {value => {
           const { cropUnt, cropAmount, items } = value
           const { randomIndexes, imageWidth, doTransition } = this.props
-          console.log(this.props)
 
           return (
             <div className="suggested-items">

@@ -1,3 +1,4 @@
+/* Global */
 * {
   font-family: Roboto, Helvetica, sans-serif;
   font-weight: 300;
@@ -8,13 +9,71 @@ h2 {
   font-size: 1.3rem;
 }
 
+/* Buttons */
 .btn {
   font-size: 0.9rem;
   font-weight: 300;
   text-transform: uppercase;
 }
+
+/* NavigationBar */
+.top-nav {
+  font-size: 32px;
+}
+
+.btn-cart > i > .car-items-num {
+  font-size: 0.9rem;
+  text-shadow: none;
+  font-weight: 400;
+}
+
+/* CheckOutModal */
+.items-table > table {
+  font-size: 0.85rem;
+}
+.items-table td:first-child {
+  font-weight: 400;
+}
+
+/* ThumbnailView */
 .feed-thumbnail-wrap > span.thumbnail-name {
   font-family: "Cinzel", Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 0.8rem;
+}
+
+/* ThumbnailPreviewModal */
+.product-preview-modal > i {
+  font-size: 1.2rem;
+}
+.preview-footer .btn {
+  font-size: 1rem;
+}
+
+/* ProductDetailView */
+.breadcrumbs {
+  font-size: 0.9rem;
+}
+
+.info-bar {
+  font-size: 0.95rem;
+}
+.product-description em {
+  font-size: 0.9rem;
+}
+
+.product-description-empty > em {
+  font-size: 0.9rem;
+}
+/* ProductDetailView : Sales Rep Info*/
+
+.sales-rep > h3 {
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+.sales-rep-table table {
+  font-size: 0.9rem;
+}
+.sales-rep-table td:first-child {
+  font-weight: 400;
 }

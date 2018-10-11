@@ -33,7 +33,11 @@ export default class NavigationBar extends Component {
                 onClick={e => this.modalAction(dispatch, checkOutModal)}
               >
                 <i className="fas fa-shopping-cart">
-                  <span className="car-items-num">
+                  <span
+                    className={`car-items-num${
+                      value.cart.length > 9 ? " dub-digits" : ""
+                    }`}
+                  >
                     {value.cart < 1 ? "" : value.cart.length}
                   </span>
                 </i>
