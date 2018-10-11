@@ -27,14 +27,6 @@ h2 {
   font-weight: 400;
 }
 
-/* CheckOutModal */
-.items-table > table {
-  font-size: 0.85rem;
-}
-.items-table td:first-child {
-  font-weight: 400;
-}
-
 /* ThumbnailView */
 .feed-thumbnail-wrap > span.thumbnail-name {
   font-family: "Cinzel", Arial, Helvetica, sans-serif;
@@ -48,6 +40,14 @@ h2 {
 }
 .preview-footer .btn {
   font-size: 1rem;
+}
+
+/* CheckOutModal */
+.items-table > table {
+  font-size: 0.85rem;
+}
+.items-table td:first-child {
+  font-weight: 400;
 }
 
 /* ProductDetailView */
