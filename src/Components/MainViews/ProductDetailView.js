@@ -6,6 +6,7 @@ import SuggestedItems from "../SuggestedItems"
 export default class ProductDetailView extends Component {
   constructor(props) {
     super(props)
+    // Receiving props and initialiazing this components state
     this.state = {
       screenSize: { width: 0, height: 0 },
       currentProductId: "",
@@ -15,8 +16,10 @@ export default class ProductDetailView extends Component {
         Math.floor(Math.random() * 9)
       ]
     }
+    // Every time user goes to a new ProductDetail page it should start at the top:
     window.scrollTo(0, 0)
 
+    // Binding functions to 'this' instance
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
     this.addToCart = this.addToCart.bind(this)
@@ -33,12 +36,19 @@ export default class ProductDetailView extends Component {
   }
 
   updateWindowDimensions() {
+    // I use this to keep track of the window dimensions
+    // in order to request different images from ImageResizer.
+    // I would improve this, as I don't like this function consantly
+    // being called on this.render()
+
     this.setState({
       screenSize: { width: window.innerWidth, height: window.innerHeight }
     })
   }
 
   formatPhoneNumber(phoneNumberString) {
+    // Making sure phones coming from test.json are all uniformed in formatting
+
     const cleaned = ("" + phoneNumberString).replace(/\D/g, "")
     const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
     if (match) {
@@ -49,6 +59,10 @@ export default class ProductDetailView extends Component {
   }
 
   addToCart(dispatch, productId) {
+    // Using React's Context API to dispatch this action and payload
+    // over to the Provider in .data/context.js in order to update the
+    // app's state.
+
     if (productId) {
       dispatch({ type: "ADD_TO_CART", payload: productId })
     }
@@ -85,6 +99,12 @@ export default class ProductDetailView extends Component {
   // }
 
   doTransition() {
+    // Every time a user click's one of the suggested 3 items this updates the
+    // component's state with new indexes to be used in the SuggestedItems component
+    // in order to generate 3 new items.
+    // I had a different way of doing this before but it was taking me longer than I wanted
+    // in order to debug it, however in a real life scenario I would improve on this:
+
     this.setState({
       ...this.state,
       indexes: [

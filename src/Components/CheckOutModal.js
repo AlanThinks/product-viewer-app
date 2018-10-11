@@ -3,15 +3,23 @@ import { Consumer } from "../data/context"
 
 export default class CheckOutModal extends Component {
   closeModal(dispatch) {
+    // Using React's Context API to dispatch this action which
+    // track if the modal should be open/closes in the Provider
     dispatch({ type: "CHECKOUT_MODAL", payload: false })
   }
+
   removeItem(dispatch, index) {
+    // Using React's Context API to dispatch this actions which
+    // sends the index of the item in the state.cart which should
+    // be removed.
     dispatch({ type: "REMOVE_FROM_CART", payload: index })
   }
   render() {
     return (
       <Consumer>
         {value => {
+          // Data coming from 'vale' comes from the Provider in
+          // ./data/context.js
           const { dispatch, cart, checkOutModal } = value
           return (
             <div

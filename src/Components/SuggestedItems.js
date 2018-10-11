@@ -14,6 +14,8 @@ export default class SuggestedItems extends Component {
             <div className="suggested-items">
               {
                 <React.Fragment>
+                  {/* Here I map through the array with 3 random items
+                   in order to render each one with its proper HTML */}
                   {[
                     items[randomIndexes[0]],
                     items[randomIndexes[1]],

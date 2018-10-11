@@ -6,6 +6,7 @@ import ThumbnailPreviewModal from "../ThumbnailPreviewModal"
 export default class ThumbnailsView extends Component {
   constructor(props) {
     super(props)
+    // Receiving props and initialiazing this components state
     this.state = {
       showContactInfo: true,
       screenSize: { width: 0, height: 0 },
@@ -19,6 +20,7 @@ export default class ThumbnailsView extends Component {
       }
     }
 
+    // Binding functions to 'this' instance
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.modalAction = this.modalAction.bind(this)
 
@@ -44,6 +46,8 @@ export default class ThumbnailsView extends Component {
   }
 
   modalAction(e, dispatch, modelValue, items) {
+    // Using React's Context API to dispatch this action which tracks
+    // if the modal should be open/close in the Provider
     if (!modelValue) {
       const selectedItem = items.filter(
         item => item.ProductID.toString() === e.target.name
@@ -86,6 +90,8 @@ export default class ThumbnailsView extends Component {
                 truncDescription={truncDescription}
               />
               <div className="container">
+                {/* Here I map through the 'items' array in order to render each
+              one with its proper HTML */}
                 {items.map(item => (
                   <Thumbnail
                     key={item.ProductID}

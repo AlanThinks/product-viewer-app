@@ -1,13 +1,15 @@
+// React & Router Imports
 import React, { Component } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
-import "./css/styles.css"
-
-import NotFound from "./Components/NotFound"
 import { Provider } from "./data/context"
+
+// Components
+import NotFound from "./Components/NotFound"
 import ThumbnailsView from "./Components/MainViews/ThumbnailsView"
 import ProductDetailsView from "./Components/MainViews/ProductDetailView"
 import NavigationBar from "./Components/NavigationBar"
 import CheckOutModal from "./Components/CheckOutModal"
+import "./css/styles.css"
 
 class Router extends Component {
   render() {
