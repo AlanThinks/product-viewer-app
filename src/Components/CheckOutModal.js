@@ -9,10 +9,14 @@ export default class CheckOutModal extends Component {
   }
 
   removeItem(dispatch, index) {
-    // Using React's Context API to dispatch this actions which
-    // sends the index of the item in the state.cart which should
+    // Sending index of the item in the state.cart which should
     // be removed.
     dispatch({ type: "REMOVE_FROM_CART", payload: index })
+  }
+  checkOut(dispatch) {
+    // Clearing cart in the Provider
+    dispatch({ type: "CLEAR_CART", payload: "" })
+    this.closeModal(dispatch)
   }
   render() {
     return (
@@ -102,6 +106,17 @@ export default class CheckOutModal extends Component {
                       </tr>
                     </tbody>
                   </table>
+                  <button
+                    onClick={e => this.checkOut(dispatch)}
+                    style={
+                      cart.length < 1
+                        ? { display: "none" }
+                        : { display: "block" }
+                    }
+                    className="btn btn-block btn-add-to-cart btn-checkout"
+                  >
+                    Check-Out
+                  </button>
                 </div>
               </div>
             </div>

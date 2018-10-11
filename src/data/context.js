@@ -40,6 +40,12 @@ const reducer = (state, action) => {
         cart: state.cart.filter((item, i) => action.payload !== i)
       }
 
+    case `CLEAR_CART`:
+      return {
+        ...state,
+        cart: []
+      }
+
     case `CHECKOUT_MODAL`:
       return {
         ...state,

@@ -51,6 +51,10 @@ i {
   margin-top: px;
 }
 
+.btn-checkout {
+  margin-top: 25px;
+}
+
 .preview-footer .btn {
   box-shadow: none;
 }
