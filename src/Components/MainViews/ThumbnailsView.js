@@ -16,9 +16,7 @@ export default class ThumbnailsView extends Component {
         BasePrice: "",
         PhotoName: "",
         OnHandQuantity: ""
-      },
-      cropUnt: 300,
-      cropAmount: "6,6,294,294"
+      }
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
@@ -67,7 +65,7 @@ export default class ThumbnailsView extends Component {
     return (
       <Consumer>
         {value => {
-          const { items, dispatch, productModal } = value
+          const { items, dispatch, productModal, cropUnt, cropAmount } = value
           const { Description } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
@@ -75,7 +73,6 @@ export default class ThumbnailsView extends Component {
           } else {
             truncDescription = Description
           }
-          const { cropUnt, cropAmount } = this.state
           const modalPhotoUrl = `${
             this.state.selectedItem.PhotoName
           }?w=${imageWidth *

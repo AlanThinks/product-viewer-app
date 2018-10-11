@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Consumer } from "../../data/context"
 import { Link } from "react-router-dom"
+import SuggestedItems from "../SuggestedItems"
 
 export default class ProductDetailView extends Component {
   constructor(props) {
@@ -8,8 +9,6 @@ export default class ProductDetailView extends Component {
     this.state = {
       screenSize: { width: 0, height: 0 },
       currentProductId: "",
-      cropUnt: 300,
-      cropAmount: "6,6,294,294",
       indexes: [
         Math.floor(Math.random() * 9),
         Math.floor(Math.random() * 9),
@@ -97,6 +96,7 @@ export default class ProductDetailView extends Component {
 
     window.scrollTo(0, 0)
   }
+
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 550
@@ -107,7 +107,6 @@ export default class ProductDetailView extends Component {
     return (
       <Consumer>
         {value => {
-          const { cropUnt, cropAmount } = this.state
           let currentId
           !this.state.currentProductId
             ? (currentId = this.props.match.params.id)
@@ -125,7 +124,7 @@ export default class ProductDetailView extends Component {
             OnHandQuantity,
             ProductID
           } = item
-          const { SalesRep } = value
+          const { SalesRep, cropUnt, cropAmount } = value
 
           return (
             <div className="container">
@@ -183,37 +182,12 @@ export default class ProductDetailView extends Component {
                       {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}
                     </button>
                   </div>
-                  <div className="suggested-items">
-                    {
-                      <React.Fragment>
-                        {[
-                          value.items[this.state.indexes[0]],
-                          value.items[this.state.indexes[1]],
-                          value.items[this.state.indexes[2]]
-                        ].map((item, i) => (
-                          <div
-                            key={"suggestedItem" + i}
-                            className="suggested-item"
-                          >
-                            <Link
-                              to={{
-                                pathname: `/product-detail/${item.ProductID}`,
-                                state: { currentProductId: item.ProductID }
-                              }}
-                              onClick={this.doTransition}
-                            >
-                              <img
-                                src={`${
-                                  item.PhotoName
-                                }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-                                alt=""
-                              />
-                            </Link>
-                          </div>
-                        ))}
-                      </React.Fragment>
-                    }
-                  </div>
+                  <SuggestedItems
+                    randomIndexes={this.state.indexes}
+                    item={item}
+                    imageWidth={imageWidth}
+                    doTransition={this.doTransition}
+                  />
                   <div className="sales-rep">
                     <h3>Sales Representative:</h3>
 

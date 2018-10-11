@@ -72,6 +72,8 @@ export class Provider extends Component {
     cart: [],
     checkOutModal: false,
     productModal: false,
+    cropUnt: 300,
+    cropAmount: "6,6,294,294",
     dispatch: action => this.setState(state => reducer(state, action))
   }
 
