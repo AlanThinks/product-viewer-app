@@ -15,6 +15,7 @@ export default class ProductDetailView extends Component {
         Math.floor(Math.random() * 9)
       ]
     }
+    window.scrollTo(0, 0)
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
