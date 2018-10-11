@@ -22,8 +22,6 @@ export default class ThumbnailsView extends Component {
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-    // this.viewModal = this.viewModal.bind(this)
-    // this.closeModal = this.closeModal.bind(this)
     this.modalAction = this.modalAction.bind(this)
 
     console.log(
@@ -46,22 +44,6 @@ export default class ThumbnailsView extends Component {
       screenSize: { width: window.innerWidth, height: window.innerHeight }
     })
   }
-  // viewModal(e, items) {
-  //   if (!this.state.viewModal) {
-  //     const selectedItem = items.filter(
-  //       item => item.ProductID.toString() === e.target.name
-  //     )
-  //     this.setState({
-  //       viewModal: true,
-  //       selectedItem: selectedItem[0]
-  //     })
-  //   }
-  // }
-  // closeModal() {
-  //   this.setState({
-  //     viewModal: false
-  //   })
-  // }
 
   modalAction(e, dispatch, modelValue, items) {
     if (!modelValue) {
