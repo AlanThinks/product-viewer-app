@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import { Consumer } from "../data/context"
-import Thumbnail from "./Thumbnail"
+import { Consumer } from "../../data/context"
+import Thumbnail from "../Thumbnail"
 import { Link } from "react-router-dom"
 
 export default class ThumbnailsView extends Component {

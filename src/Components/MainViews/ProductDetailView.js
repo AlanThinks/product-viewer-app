@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Consumer } from "../data/context"
+import { Consumer } from "../../data/context"
 import { Link } from "react-router-dom"
 export default class ProductDetailView extends Component {
   constructor(props) {
