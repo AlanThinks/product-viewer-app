@@ -69,12 +69,11 @@
     display: inline-block;
     box-sizing: initial;
     vertical-align: 0px;
-    margin: auto;
   }
   .product-image {
     max-width: 45%;
     display: inline-block;
-    vertical-align: 85px;
+    vertical-align: 50px;
   }
   .product-image img {
     width: 95%;
@@ -96,7 +95,7 @@
     width: 80%;
   }
   .product-description {
-    margin-bottom: 150px;
+    margin-bottom: 50px;
   }
   h2 {
     font-size: 1.7rem;
@@ -120,10 +119,6 @@
   .items-table table {
     width: 100%;
   }
-  .sales-rep {
-    position: relative;
-    top: -100px;
-  }
 
   .sales-rep-table {
     width: 100%;
@@ -131,18 +126,7 @@
   .sales-rep-table table {
     width: 100%;
   }
-  .suggested-items {
-    position: relative;
-    left: -99%;
-    top: 140px;
-    width: 92%;
-  }
-  .suggested-item {
-    width: 33%;
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 10px;
-  }
+
   .suggested-item img {
     width: 100%;
   }
@@ -187,35 +171,18 @@
   }
   .product-info {
     width: 45%;
+    position: relative;
     display: inline-block;
     box-sizing: initial;
     vertical-align: 0px;
-    margin: auto;
+    left: 25%;
+    transform: translateX(-50%);
   }
   .product-image {
-    max-width: 500px;
+    max-width: 400px;
     display: inline-block;
-    vertical-align: 0px;
   }
   .product-image img {
-    width: 95%;
-  }
-  .suggested-items {
-    position: relative;
-    left: -99%;
-    top: 200px;
-    width: 400px;
-  }
-  .suggested-item {
-    width: 33%;
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 10px;
-  }
-  .suggested-item img {
-    width: 100%;
-  }
-  .suggested-item img:hover {
     width: 95%;
   }
 }

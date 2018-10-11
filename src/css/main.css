@@ -232,7 +232,7 @@ i {
   padding: 10px 0 10px 0px;
 }
 .big-thumbnail img {
-  width: 80%;
+  height: 60vh;
   margin-left: 50%;
   transform: translateX(-50%);
 }

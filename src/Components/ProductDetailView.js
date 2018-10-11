@@ -8,13 +8,19 @@ export default class ProductDetailView extends Component {
       screenSize: { width: 0, height: 0 },
       currentProductId: "",
       cropUnt: 300,
-      cropAmount: "6,6,294,294"
+      cropAmount: "6,6,294,294",
+      indexes: [
+        Math.floor(Math.random() * 9),
+        Math.floor(Math.random() * 9),
+        Math.floor(Math.random() * 9)
+      ]
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
     this.addToCart = this.addToCart.bind(this)
     this.getSuggestedItems = this.getSuggestedItems.bind(this)
+    this.doTransition = this.doTransition.bind(this)
   }
 
   componentDidMount() {
@@ -74,9 +80,17 @@ export default class ProductDetailView extends Component {
   }
 
   doTransition() {
+    this.setState({
+      ...this.state,
+      indexes: [
+        Math.floor(Math.random() * 9),
+        Math.floor(Math.random() * 9),
+        Math.floor(Math.random() * 9)
+      ]
+    })
+
     window.scrollTo(0, 0)
   }
-
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 550
@@ -166,29 +180,31 @@ export default class ProductDetailView extends Component {
                   <div className="suggested-items">
                     {
                       <React.Fragment>
-                        {this.getSuggestedItems(value.items, 3).map(
-                          (item, i) => (
-                            <div
-                              key={"suggestedItem" + i}
-                              className="suggested-item"
+                        {[
+                          value.items[this.state.indexes[0]],
+                          value.items[this.state.indexes[1]],
+                          value.items[this.state.indexes[2]]
+                        ].map((item, i) => (
+                          <div
+                            key={"suggestedItem" + i}
+                            className="suggested-item"
+                          >
+                            <Link
+                              to={{
+                                pathname: `/product-detail/${item.ProductID}`,
+                                state: { currentProductId: item.ProductID }
+                              }}
+                              onClick={this.doTransition}
                             >
-                              <Link
-                                to={{
-                                  pathname: `/product-detail/${item.ProductID}`,
-                                  state: { currentProductId: item.ProductID }
-                                }}
-                                onClick={this.doTransition}
-                              >
-                                <img
-                                  src={`${
-                                    item.PhotoName
-                                  }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
-                                  alt=""
-                                />
-                              </Link>
-                            </div>
-                          )
-                        )}
+                              <img
+                                src={`${
+                                  item.PhotoName
+                                }?w=${imageWidth}&h=${imageWidth}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`}
+                                alt=""
+                              />
+                            </Link>
+                          </div>
+                        ))}
                       </React.Fragment>
                     }
                   </div>
