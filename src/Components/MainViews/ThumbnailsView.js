@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Consumer } from "../../data/context"
 import Thumbnail from "../Thumbnail"
 import { Link } from "react-router-dom"
+import ThumbnailPreviewModal from "../ThumbnailPreviewModal"
 
 export default class ThumbnailsView extends Component {
   constructor(props) {
@@ -99,58 +100,12 @@ export default class ThumbnailsView extends Component {
             1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
           return (
             <div className="main">
-              <div
-                className="modal"
-                style={
-                  this.state.viewModal
-                    ? {
-                        opacity: 100,
-                        visibility: "visible",
-                        transition: "all 0.2s"
-                      }
-                    : {
-                        opacity: 0,
-                        visibility: "hidden",
-                        transition: "all 0.2s"
-                      }
-                }
-              >
-                <div className="product-preview-modal">
-                  <i
-                    onClick={this.closeModal}
-                    style={{ float: "right", color: "grey" }}
-                    className="fas fa-times"
-                  />
-                  <div className="preview-header">
-                    <h2>{ItemName}</h2>
-                  </div>
-                  <div className="big-thumbnail">
-                    <Link to={`./product-detail/${ProductID}`}>
-                      <img src={modalPhotoUrl} alt={ItemName} />
-                    </Link>
-                  </div>
-                  <div className="preview-desc">
-                    <p>{truncDescription}</p>
-                  </div>
-
-                  <div className="preview-footer">
-                    <Link to={`./product-detail/${ProductID}`}>
-                      <button className="btn btn-price">
-                        ${parseFloat(BasePrice).toFixed(2)}
-                      </button>
-                      <button className="btn btn-details">Details</button>
-                    </Link>
-
-                    <button
-                      disabled={OnHandQuantity < 1 ? true : false}
-                      onClick={e => this.addToCart(dispatch, ProductID)}
-                      className="btn btn-add-to-cart"
-                    >
-                      {OnHandQuantity < 1 ? "Out Of Stock" : "Add To Cart"}{" "}
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <ThumbnailPreviewModal
+                item={this.state.selectedItem}
+                modalPhotoUrl={modalPhotoUrl}
+                truncDescription={truncDescription}
+                viewModal={this.state.viewModal}
+              />
               <div className="container">
                 {items.map(item => (
                   <Thumbnail
