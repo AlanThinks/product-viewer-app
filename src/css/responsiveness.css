@@ -9,7 +9,13 @@
   .product-preview-modal > i {
     font-size: 1.5rem;
   }
-
+  .big-thumbnail img {
+    height: 50vh;
+    width: auto;
+  }
+  .product-preview-modal {
+    width: 60vw;
+  }
   .preview-footer .btn {
     font-size: 1.2rem;
     font-weight: 300;
