@@ -10,7 +10,13 @@ export default class ThumbnailsView extends Component {
       showContactInfo: true,
       screenSize: { width: 0, height: 0 },
       viewModal: false,
-      selectedItem: { ItemName: "", Description: "", BasePrice: "" }
+      selectedItem: {
+        ItemName: "",
+        Description: "",
+        BasePrice: "",
+        PhotoName: "",
+        OnHandQuantity: ""
+      }
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
