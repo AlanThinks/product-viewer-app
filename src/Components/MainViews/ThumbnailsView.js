@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Consumer } from "../../data/context"
 import Thumbnail from "../Thumbnail"
-import { Link } from "react-router-dom"
 import ThumbnailPreviewModal from "../ThumbnailPreviewModal"
 
 export default class ThumbnailsView extends Component {
@@ -17,13 +16,16 @@ export default class ThumbnailsView extends Component {
         BasePrice: "",
         PhotoName: "",
         OnHandQuantity: ""
-      }
+      },
+      cropUnt: 300,
+      cropAmount: "6,6,294,294"
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
-    this.viewModal = this.viewModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-    this.addToCart = this.addToCart.bind(this)
+    // this.viewModal = this.viewModal.bind(this)
+    // this.closeModal = this.closeModal.bind(this)
+    this.modalAction = this.modalAction.bind(this)
+
     console.log(
       '%c "Product Viewer App" by Alan Guevara 👉alanthinks.com',
       "font-family:sans-serif; color:rgb(216, 0, 90); font-size:1.5rem; text-align:center; text-shadow:1px 1px 1px darkgrey;"
@@ -44,29 +46,35 @@ export default class ThumbnailsView extends Component {
       screenSize: { width: window.innerWidth, height: window.innerHeight }
     })
   }
-  viewModal(e, items) {
-    if (!this.state.viewModal) {
+  // viewModal(e, items) {
+  //   if (!this.state.viewModal) {
+  //     const selectedItem = items.filter(
+  //       item => item.ProductID.toString() === e.target.name
+  //     )
+  //     this.setState({
+  //       viewModal: true,
+  //       selectedItem: selectedItem[0]
+  //     })
+  //   }
+  // }
+  // closeModal() {
+  //   this.setState({
+  //     viewModal: false
+  //   })
+  // }
+
+  modalAction(e, dispatch, modelValue, items) {
+    if (!modelValue) {
       const selectedItem = items.filter(
         item => item.ProductID.toString() === e.target.name
       )
       this.setState({
-        viewModal: true,
         selectedItem: selectedItem[0]
       })
     }
-  }
-  closeModal() {
-    this.setState({
-      viewModal: false
-    })
+    dispatch({ type: "PRODUCT_MODAL", payload: !modelValue })
   }
 
-  addToCart(dispatch, productId) {
-    if (productId) {
-      dispatch({ type: "ADD_TO_CART", payload: productId })
-    }
-    this.closeModal()
-  }
   render() {
     const { width } = this.state.screenSize
     let imageWidth = 350
@@ -77,40 +85,34 @@ export default class ThumbnailsView extends Component {
     return (
       <Consumer>
         {value => {
-          const { items, dispatch } = value
-          const {
-            ProductID,
-            ItemName,
-            BasePrice,
-            Description,
-            OnHandQuantity
-          } = this.state.selectedItem
+          const { items, dispatch, productModal } = value
+          const { Description } = this.state.selectedItem
           let truncDescription
           if (Description.length > 74) {
             truncDescription = Description.substring(0, 75) + `...`
           } else {
             truncDescription = Description
           }
-
-          const cropUnt = 300
-          const cropAmount = "6,6,294,294"
+          const { cropUnt, cropAmount } = this.state
           const modalPhotoUrl = `${
             this.state.selectedItem.PhotoName
           }?w=${imageWidth *
             1.5}&cropxunits=${cropUnt}&cropyunits=${cropUnt}&crop=${cropAmount}`
+
           return (
             <div className="main">
               <ThumbnailPreviewModal
                 item={this.state.selectedItem}
                 modalPhotoUrl={modalPhotoUrl}
                 truncDescription={truncDescription}
-                viewModal={this.state.viewModal}
               />
               <div className="container">
                 {items.map(item => (
                   <Thumbnail
                     key={item.ProductID}
-                    onClick={e => this.viewModal(e, items)}
+                    onClick={e =>
+                      this.modalAction(e, dispatch, productModal, items)
+                    }
                     id={item.ProductID}
                     imageUrl={`${
                       item.PhotoName

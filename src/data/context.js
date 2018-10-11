@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 // import axios from "axios"
 import data from "./test.json"
-const { items, SalesRep, ...ManufacturerData } = data
 
+const { items, SalesRep, ...ManufacturerData } = data
 const Context = React.createContext()
 
 const reducer = (state, action) => {
@@ -46,6 +46,12 @@ const reducer = (state, action) => {
         checkOutModal: action.payload
       }
 
+    case `PRODUCT_MODAL`:
+      return {
+        ...state,
+        productModal: action.payload
+      }
+
     // case `UPDATE_ITEM`:
     //   return {
     //     ...state,
@@ -57,6 +63,7 @@ const reducer = (state, action) => {
       return state
   }
 }
+
 export class Provider extends Component {
   state = {
     items,
@@ -64,6 +71,7 @@ export class Provider extends Component {
     ManufacturerData,
     cart: [],
     checkOutModal: false,
+    productModal: false,
     dispatch: action => this.setState(state => reducer(state, action))
   }
 

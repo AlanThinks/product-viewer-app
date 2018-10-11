@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Consumer } from "../../data/context"
 import { Link } from "react-router-dom"
+
 export default class ProductDetailView extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +21,6 @@ export default class ProductDetailView extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.formatPhoneNumber = this.formatPhoneNumber.bind(this)
     this.addToCart = this.addToCart.bind(this)
-    this.getSuggestedItems = this.getSuggestedItems.bind(this)
     this.doTransition = this.doTransition.bind(this)
   }
 
@@ -38,6 +38,7 @@ export default class ProductDetailView extends Component {
       screenSize: { width: window.innerWidth, height: window.innerHeight }
     })
   }
+
   formatPhoneNumber(phoneNumberString) {
     const cleaned = ("" + phoneNumberString).replace(/\D/g, "")
     const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
@@ -53,32 +54,36 @@ export default class ProductDetailView extends Component {
       dispatch({ type: "ADD_TO_CART", payload: productId })
     }
   }
-  getSuggestedItems(allItems, numOfItems) {
-    const { currentProductId } = this.state
 
-    let allOtherItems = allItems.filter(
-      item => currentProductId !== item.ProductID.toString()
-    )
+  // This was an earlier function which was meant to get back 3 random
+  // items that did not repeat in order to show in the suggestedItems
 
-    let suggestedItems = []
-    let lastRandom = undefined
-    let random
+  // getSuggestedItems(allItems, numOfItems) {
+  //   const { currentProductId } = this.state
 
-    for (var i = 0; i < numOfItems; i++) {
-      if (lastRandom === undefined) {
-        random = Math.floor(Math.random() * (allOtherItems.length + 1))
-      } else {
-        random = Math.floor(Math.random() * (allOtherItems.length - 1))
-        if (random >= lastRandom) random += 1
-      }
-      if (random > 8) random = 0
+  //   let allOtherItems = allItems.filter(
+  //     item => currentProductId !== item.ProductID.toString()
+  //   )
 
-      suggestedItems.push(allOtherItems[random])
-      lastRandom = random
-    }
+  //   let suggestedItems = []
+  //   let lastRandom = undefined
+  //   let random
 
-    return suggestedItems
-  }
+  //   for (var i = 0; i < numOfItems; i++) {
+  //     if (lastRandom === undefined) {
+  //       random = Math.floor(Math.random() * (allOtherItems.length + 1))
+  //     } else {
+  //       random = Math.floor(Math.random() * (allOtherItems.length - 1))
+  //       if (random >= lastRandom) random += 1
+  //     }
+  //     if (random > 8) random = 0
+
+  //     suggestedItems.push(allOtherItems[random])
+  //     lastRandom = random
+  //   }
+
+  //   return suggestedItems
+  // }
 
   doTransition() {
     this.setState({
