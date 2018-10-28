@@ -23,7 +23,7 @@ export default class NavigationBar extends Component {
           // ManufacturerID (used for the Logo) comes directly from
           // the Provider state which comes directly from test.josn
           const { dispatch, checkOutModal } = value
-          const { ManufacturerID } = value.ManufacturerData
+          // const { ManufacturerID } = value.ManufacturerData
           return (
             <nav className="top-nav">
               <Link to="/">
