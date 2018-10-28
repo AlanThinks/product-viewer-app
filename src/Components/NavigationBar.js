@@ -28,9 +28,13 @@ export default class NavigationBar extends Component {
             <nav className="top-nav">
               <Link to="/">
                 <div className="nav-logo">
-                  <img
+                  {/* <img
                     src={`http://images.repzio.com/productimages/${ManufacturerID}/logo${ManufacturerID}_lg.jpg?cropxunits=100&cropyunits=100&crop=0,5,0,-5`}
                     alt={ManufacturerID.CompanyName}
+                  /> */}
+                  <img
+                    src="http://alanthinks.com/projects/product-viewer-app/box-buy-logo.png"
+                    alt=""
                   />
                 </div>
               </Link>
